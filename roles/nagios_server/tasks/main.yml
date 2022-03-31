@@ -1,0 +1,21 @@
+---
+- name: "Copy Linux hosts config file"
+  command: cp /usr/local/nagios/etc/hosts/ESXi\ host\ WITCHDOCTOR.cfg /usr/local/nagios/etc/hosts/{{ host }}.cfg
+- name: "Replace host - Linux"
+  replace:
+    path: /usr/local/nagios/etc/hosts/{{ host }}.cfg
+    regexp: "ESXi host PALADIN"
+    replace: "{{ host }}"
+
+- name: Create host.cfg from template
+  template:
+    src: "host.cfg.j2"
+    dest: "/usr/local/nagios/etc/hosts/{{ ansible_default_ipv4.address }}.cfg"
+    owner: root
+    group: root
+    mode: 0644
+
+- name: "Restart nagios"
+  service:
+    name: nagios
+    state: restarted

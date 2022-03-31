@@ -1,0 +1,16 @@
+define host {
+    host_name                {{ ansible_default_ipv4.address }}
+    use                      xiwizard_generic_host
+    address                  {{ ansible_default_ipv4.address }}
+    max_check_attempts       5
+    check_interval           5
+    retry_interval           1
+    check_period             xi_timeperiod_24x7
+    contacts                 IT Alerts
+    notification_interval    60
+    notification_period      xi_timeperiod_24x7
+    icon_image               vmware.png
+    statusmap_image          vmware.png
+    _xiwizard                vmware
+    register                 1
+}
