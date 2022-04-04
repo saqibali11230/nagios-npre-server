@@ -1,7 +1,10 @@
-define host {
-    host_name                {{ ansible_default_ipv4.address }}
+
+{% for host in groups['app_servers'] %}
+   # something that applies to all app servers.
+   define host {
+    host_name                {{ host }}
     use                      xiwizard_generic_host
-    address                  {{ ansible_default_ipv4.address }}
+    address                  {{ host }}
     max_check_attempts       5
     check_interval           5
     retry_interval           1
@@ -14,3 +17,4 @@ define host {
     _xiwizard                vmware
     register                 1
 }
+{% endfor %}

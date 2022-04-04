@@ -2,7 +2,7 @@
 - name: Create host.cfg from template
   template:
     src: "host.cfg.j2"
-    dest: "/usr/local/nagios/etc/hosts/{{ ansible_default_ipv4.address }}.cfg"
+    dest: "/usr/local/nagios/etc/hosts/new.cfg"
     owner: root
     group: root
     mode: 0644
