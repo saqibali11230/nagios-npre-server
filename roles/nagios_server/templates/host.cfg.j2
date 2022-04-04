@@ -1,7 +1,7 @@
 
-{% for host in groups['app_servers'] %}
-   # something that applies to all app servers.
-   define host {
+{% for host in groups['clients'] %}
+# something that applies to all app servers.
+define host {
     host_name                {{ host }}
     use                      xiwizard_generic_host
     address                  {{ host }}
